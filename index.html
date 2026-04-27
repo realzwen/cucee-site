@@ -142,7 +142,7 @@
   </div>
 
   <div class="spotify-container">
-    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EVJSv96o99p9v?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/playlist/1EkbiC9gHVqL9lwvHs1z2K" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>
 
   <div class="discord-row">
@@ -210,9 +210,17 @@ async function loadDiscord(id, img, name, status) {
       const s = d.data.discord_status;
       const colors = { online: '#23a55a', dnd: '#f23f43', idle: '#f0b232', offline: '#747f8d' };
       status.style.background = colors[s] || colors.offline;
+    } else {
+      // Fallback for when API fails
+      img.src = `https://cdn.discordapp.com/embed/avatars/${id % 5}.png`;
+      name.textContent = id === "969230413593714718" ? "misswy." : "kayipruhlar";
+      status.style.background = '#747f8d'; // offline
     }
   } catch(e) {
-    name.textContent = "Hata oluştu";
+    // Fallback for when API fails
+    img.src = `https://cdn.discordapp.com/embed/avatars/${id % 5}.png`;
+    name.textContent = id === "969230413593714718" ? "misswy." : "kayipruhlar";
+    status.style.background = '#747f8d'; // offline
   }
 }
 

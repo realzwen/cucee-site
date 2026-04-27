@@ -6,251 +6,219 @@
 <title>irem 💜</title>
 
 <style>
-body{
-  margin:0;
-  background:#0d001a;
-  color:white;
-  font-family:Arial;
-  overflow-x:hidden;
-}
+  :root {
+    --purple-glow: #a855f7;
+    --dark-bg: #0d001a;
+  }
 
-/* 🌌 GALAXY BACKGROUND */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:0;
-}
+  body {
+    margin: 0;
+    background: var(--dark-bg);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+  }
 
-/* HERO */
-.hero{
-  position:relative;
-  z-index:2;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
+  canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
 
-.hero h1{
-  font-size:5rem;
-  color:#f0abfc;
-}
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
 
-/* 💜 HEART ANIMATION */
-.heart{
-  position:fixed;
-  font-size:20px;
-  pointer-events:none;
-  animation:pop 1s ease-out forwards;
-  z-index:999;
-}
+  h1 {
+    font-size: 4rem;
+    color: #f0abfc;
+    text-shadow: 0 0 15px rgba(240, 171, 252, 0.5);
+    margin: 20px 0;
+  }
 
-@keyframes pop{
-  0%{transform:scale(1);opacity:1;}
-  100%{transform:translate(var(--x),var(--y)) scale(2);opacity:0;}
-}
+  /* 🐱 TEK KEDİ GİFİ */
+  .cat-container img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
 
-/* 🐱 CATS */
-.cats{
-  position:relative;
-  z-index:2;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  padding:30px;
-}
+  /* 🎧 SPOTIFY FIX */
+  .spotify-container {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .spotify-container iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
 
-.cats img,
-.cats video{
-  width:250px;
-  border-radius:18px;
-}
+  /* 💎 DISCORD CARDS */
+  .discord-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-/* 🎧 SPOTIFY */
-.spotify{
-  position:relative;
-  z-index:2;
-  display:flex;
-  justify-content:center;
-  margin:40px 0;
-}
+  .box {
+    width: 280px;
+    background: rgba(26, 0, 48, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    transition: 0.3s;
+  }
 
-iframe{
-  width:90%;
-  max-width:600px;
-  height:152px;
-  border-radius:16px;
-  border:none;
-}
+  .box:hover {
+    transform: translateY(-5px);
+    border-color: var(--purple-glow);
+  }
 
-/* 💎 DISCORD */
-.discord{
-  position:relative;
-  z-index:2;
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-  padding:40px;
-}
+  .avatar-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+  }
 
-.box{
-  width:260px;
-  background:#1a0030;
-  padding:20px;
-  border-radius:18px;
-  text-align:center;
-}
+  .box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--purple-glow);
+    background: #1a0030;
+  }
 
-.box img{
-  width:100px;
-  height:100px;
-  border-radius:50%;
-}
+  .status-dot {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #1a0030;
+    background: #747f8d;
+  }
+
+  .name { font-weight: bold; font-size: 1.2rem; margin-top: 10px; }
+  .id { font-size: 0.8rem; opacity: 0.5; margin-top: 5px; }
+
+  /* 💜 CLICK HEARTS */
+  .heart {
+    position: fixed;
+    font-size: 20px;
+    pointer-events: none;
+    z-index: 999;
+    animation: pop 0.8s ease-out forwards;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(2); opacity: 0; }
+  }
 </style>
 </head>
-
 <body>
 
 <canvas id="bg"></canvas>
 
-<div class="hero">
+<div class="content">
   <h1>irem 💜</h1>
-</div>
 
-<!-- 🎧 SPOTIFY -->
-<div class="spotify">
-<iframe
-src="https://open.spotify.com/embed/playlist/1EkbiC9gHVqL9lwvHs1z2K?utm_source=generator&theme=0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
-</div>
+  <div class="cat-container">
+    <img src="https://media.discordapp.net/attachments/1427296816193343613/1427297969408835734/G27H_mNXsAA6dQb.gif?ex=69f0c051&is=69ef6ed1&hm=2a506fc6952c26bf99eae2b04df0a700961e4d2fad4f1a4b221841110143b5fe&" alt="cat">
+  </div>
 
-<!-- 🐱 GIF / MP4 -->
-<div class="cats">
+  <div class="spotify-container">
+    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1EVJSv96o99p9v?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
 
-<img src="https://media.tenor.com/Iy_oqBMrFGEAAAAC/cat-kitten.gif">
+  <div class="discord-row">
+    <div class="box">
+      <div class="avatar-container">
+        <img id="a1" src="https://cdn.discordapp.com/embed/avatars/0.png">
+        <div id="s1" class="status-dot"></div>
+      </div>
+      <div id="n1" class="name">Yükleniyor...</div>
+      <div class="id">969230413593714718</div>
+    </div>
 
-<img src="https://media.tenor.com/2Gg_JCNqFvAAAAAC/cute-cat-cat.gif">
-
-<video autoplay loop muted playsinline>
-  <source src="https://media.tenor.com/RN2uP2yDwd0AAAPo/kedi-kitty.mp4">
-</video>
-
-</div>
-
-<!-- 📸 PHOTOS -->
-<div class="cats">
-<img src="https://media.discordapp.net/attachments/1495833415201722392/1498372094012952738/manita1.png">
-<img src="https://media.discordapp.net/attachments/1495833415201722392/1498372095032430745/manita2.png">
-</div>
-
-<!-- 💎 DISCORD -->
-<div class="discord">
-
-<div class="box">
-<img id="a1">
-<div id="n1">loading...</div>
-<div>969230413593714718</div>
-</div>
-
-<div class="box">
-<img id="a2">
-<div id="n2">loading...</div>
-<div>959756088859828235</div>
-</div>
-
+    <div class="box">
+      <div class="avatar-container">
+        <img id="a2" src="https://cdn.discordapp.com/embed/avatars/1.png">
+        <div id="s2" class="status-dot"></div>
+      </div>
+      <div id="n2" class="name">Yükleniyor...</div>
+      <div class="id">959756088859828235</div>
+    </div>
+  </div>
 </div>
 
 <script>
-
-/* 🌌 STAR GALAXY */
+/* 🌌 GALAXY BG */
 const c=document.getElementById("bg");
 const x=c.getContext("2d");
-
-function resize(){
-  c.width=innerWidth;
-  c.height=innerHeight;
-}
-resize();
-addEventListener("resize",resize);
-
-let stars=[];
-for(let i=0;i<250;i++){
-  stars.push({
-    x:Math.random()*innerWidth,
-    y:Math.random()*innerHeight,
-    r:Math.random()*1.5
-  });
-}
-
+function res(){ c.width=innerWidth; c.height=innerHeight; }
+res(); window.onresize=res;
+let stars=Array(200).fill().map(()=>({x:Math.random()*innerWidth, y:Math.random()*innerHeight, r:Math.random()*1.5}));
 function draw(){
-  x.fillStyle="#0d001a";
-  x.fillRect(0,0,c.width,c.height);
-
+  x.fillStyle="#0d001a"; x.fillRect(0,0,c.width,c.height);
   x.fillStyle="white";
-
   stars.forEach(s=>{
-    x.beginPath();
-    x.arc(s.x,s.y,s.r,0,Math.PI*2);
-    x.fill();
-
-    s.y+=0.3;
-    if(s.y>c.height){
-      s.y=0;
-      s.x=Math.random()*c.width;
-    }
+    x.beginPath(); x.arc(s.x,s.y,s.r,0,Math.PI*2); x.fill();
+    s.y+=0.4; if(s.y>c.height) s.y=0;
   });
-
   requestAnimationFrame(draw);
 }
 draw();
 
 /* 💜 CLICK HEARTS */
-document.addEventListener("click",(e)=>{
+document.onclick=(e)=>{
   for(let i=0;i<8;i++){
     let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="💜";
-    h.style.left=e.clientX+"px";
-    h.style.top=e.clientY+"px";
+    h.className="heart"; h.innerHTML="💜";
+    h.style.left=e.clientX+"px"; h.style.top=e.clientY+"px";
     h.style.setProperty("--x",(Math.random()*200-100)+"px");
     h.style.setProperty("--y",(Math.random()*200-100)+"px");
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),1000);
+    setTimeout(()=>h.remove(),800);
   }
-});
+};
 
-/* 💎 DISCORD FIX */
-async function load(id,img,name){
-  try{
-    const r=await fetch("https://api.lanyard.rest/v1/users/"+id);
-    const d=await r.json();
-    const u=d.data.discord_user;
-
-    img.src = u.avatar
-      ? `https://cdn.discordapp.com/avatars/${id}/${u.avatar}.png`
-      : "https://cdn.discordapp.com/embed/avatars/0.png";
-
-    name.textContent=u.global_name||u.username;
-
-  }catch{
-    img.src="https://cdn.discordapp.com/embed/avatars/0.png";
-    name.textContent="offline";
+/* 💎 DISCORD API FETCH (Lanyard) */
+async function loadDiscord(id, img, name, status) {
+  try {
+    const r = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+    const d = await r.json();
+    if(d.success) {
+      const u = d.data.discord_user;
+      img.src = u.avatar ? `https://cdn.discordapp.com/avatars/${id}/${u.avatar}.png?size=256` : `https://cdn.discordapp.com/embed/avatars/${u.discriminator % 5}.png`;
+      name.textContent = u.global_name || u.username;
+      
+      const s = d.data.discord_status;
+      const colors = { online: '#23a55a', dnd: '#f23f43', idle: '#f0b232', offline: '#747f8d' };
+      status.style.background = colors[s] || colors.offline;
+    }
+  } catch(e) {
+    name.textContent = "Hata oluştu";
   }
 }
 
-load("969230413593714718",
-document.getElementById("a1"),
-document.getElementById("n1"));
-
-load("959756088859828235",
-document.getElementById("a2"),
-document.getElementById("n2"));
+loadDiscord("969230413593714718", document.getElementById("a1"), document.getElementById("n1"), document.getElementById("s1"));
+loadDiscord("959756088859828235", document.getElementById("a2"), document.getElementById("n2"), document.getElementById("s2"));
 
 </script>
-
 </body>
 </html>

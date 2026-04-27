@@ -13,7 +13,7 @@
 
   body {
     margin: 0;
-    background: var(--dark-bg);
+    background: linear-gradient(to bottom, #0d001a, #1a0030, #2a0050);
     color: white;
     font-family: 'Segoe UI', sans-serif;
     overflow-x: hidden;
@@ -38,11 +38,19 @@
   h1 {
     font-size: 4rem;
     color: #f0abfc;
-    text-shadow: 0 0 15px rgba(240, 171, 252, 0.5);
+    text-shadow: 0 0 20px rgba(240, 171, 252, 0.8), 0 0 40px rgba(240, 171, 252, 0.6);
     margin: 20px 0;
+    animation: rainbow 3s infinite;
   }
 
-  /* 🐱 TEK KEDİ GİFİ */
+  @keyframes rainbow {
+    0% { color: #800080; }
+    25% { color: #a855f7; }
+    50% { color: #c084fc; }
+    75% { color: #e879f9; }
+    100% { color: #f0abfc; }
+  }
+
   .cat-container img {
     width: 100%;
     max-width: 400px;
@@ -51,7 +59,6 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* 🎧 SPOTIFY FIX */
   .spotify-container {
     width: 100%;
     max-width: 600px;
@@ -62,7 +69,6 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
 
-  /* 💎 DISCORD CARDS */
   .discord-row {
     display: flex;
     gap: 20px;
@@ -115,7 +121,6 @@
   .name { font-weight: bold; font-size: 1.2rem; margin-top: 10px; }
   .id { font-size: 0.8rem; opacity: 0.5; margin-top: 5px; }
 
-  /* 💜 CLICK HEARTS */
   .heart {
     position: fixed;
     font-size: 20px;
@@ -127,6 +132,16 @@
   @keyframes pop {
     0% { transform: scale(1); opacity: 1; }
     100% { transform: translate(var(--x), var(--y)) scale(2); opacity: 0; }
+  }
+
+  .flower {
+    position: fixed;
+    font-size: 40px;
+    color: #a855f7;
+    text-shadow: 0 0 25px #a855f7, 0 0 50px #a855f7, 0 0 75px #a855f7;
+    transition: all 2s ease;
+    z-index: 1;
+    pointer-events: none;
   }
 </style>
 </head>
@@ -167,7 +182,6 @@
 </div>
 
 <script>
-/* 🌌 GALAXY BG */
 const c=document.getElementById("bg");
 const x=c.getContext("2d");
 function res(){ c.width=innerWidth; c.height=innerHeight; }
@@ -175,7 +189,7 @@ res(); window.onresize=res;
 let stars=Array(200).fill().map(()=>({x:Math.random()*innerWidth, y:Math.random()*innerHeight, r:Math.random()*1.5}));
 function draw(){
   x.fillStyle="#0d001a"; x.fillRect(0,0,c.width,c.height);
-  x.fillStyle="white";
+  x.fillStyle="#a855f7";
   stars.forEach(s=>{
     x.beginPath(); x.arc(s.x,s.y,s.r,0,Math.PI*2); x.fill();
     s.y+=0.4; if(s.y>c.height) s.y=0;
@@ -184,7 +198,6 @@ function draw(){
 }
 draw();
 
-/* 💜 CLICK HEARTS */
 document.onclick=(e)=>{
   for(let i=0;i<8;i++){
     let h=document.createElement("div");
@@ -197,7 +210,6 @@ document.onclick=(e)=>{
   }
 };
 
-/* 💎 DISCORD API FETCH (Lanyard) */
 async function loadDiscord(id, img, name, status) {
   try {
     const r = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
@@ -226,6 +238,43 @@ async function loadDiscord(id, img, name, status) {
 
 loadDiscord("969230413593714718", document.getElementById("a1"), document.getElementById("n1"), document.getElementById("s1"));
 loadDiscord("959756088859828235", document.getElementById("a2"), document.getElementById("n2"), document.getElementById("s2"));
+
+const flowers = [];
+const numFlowers = 30;
+for(let i = 0; i < numFlowers; i++){
+  const flower = document.createElement('div');
+  flower.className = 'flower';
+  flower.textContent = '🌸';
+  flower.style.left = Math.random() * window.innerWidth + 'px';
+  flower.style.top = Math.random() * window.innerHeight + 'px';
+  document.body.appendChild(flower);
+  flowers.push(flower);
+}
+const randomMoveInterval = setInterval(() => {
+  flowers.forEach(flower => {
+    const currentLeft = parseFloat(flower.style.left);
+    const currentTop = parseFloat(flower.style.top);
+    const newLeft = currentLeft + (Math.random() - 0.5) * 30;
+    const newTop = currentTop + (Math.random() - 0.5) * 30;
+    flower.style.left = Math.max(0, Math.min(window.innerWidth - 40, newLeft)) + 'px';
+    flower.style.top = Math.max(0, Math.min(window.innerHeight - 40, newTop)) + 'px';
+  });
+}, 50);
+setTimeout(() => {
+  clearInterval(randomMoveInterval);
+  const centerX = window.innerWidth - 200;
+  const centerY = window.innerHeight / 2 - 50;
+  const scale = 20;
+  flowers.forEach((flower, i) => {
+    const t = (i / numFlowers) * 2 * Math.PI;
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+    const xPos = centerX + x * scale;
+    const yPos = centerY - y * scale;
+    flower.style.left = xPos + 'px';
+    flower.style.top = yPos + 'px';
+  });
+}, 5000);
 
 </script>
 </body>

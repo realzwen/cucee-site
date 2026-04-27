@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>cucee</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+<style>
+body{
+  margin:0;
+  background:#0d001a;
+  color:white;
+  font-family:Raleway;
+  overflow-x:hidden;
+}
+
+/* 🌌 GALAXY */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  z-index:2;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.hero h1{
+  font-size:6rem;
+  font-family:"Dancing Script";
+  background:linear-gradient(90deg,#f0abfc,#a855f7,#d8b4fe);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:glow 3s infinite;
+}
+
+@keyframes glow{
+  0%,100%{filter:brightness(1);}
+  50%{filter:brightness(1.5);}
+}
+
+/* 💜 HEARTS */
+.heart{
+  position:fixed;
+  font-size:22px;
+  pointer-events:none;
+  animation:pop 1s ease-out forwards;
+  z-index:9999;
+}
+
+@keyframes pop{
+  0%{transform:scale(1);opacity:1;}
+  100%{transform:translate(var(--x),var(--y)) scale(2);opacity:0;}
+}
+
+/* 🐱 CATS */
+.cats{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:40px;
+}
+
+.cat{
+  width:220px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 25px #a855f755;
+}
+
+.cat-media{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+/* 💎 DISCORD */
+.discord-section{
+  position:relative;
+  z-index:2;
+  padding:60px 20px;
+  text-align:center;
+}
+
+.discord-cards{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.discord-card{
+  width:260px;
+  background:#1a0030;
+  border:1px solid #a855f755;
+  border-radius:20px;
+  padding:20px;
+}
+
+.discord-avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.discord-name{
+  margin-top:10px;
+  font-weight:700;
+  color:#d8b4fe;
+}
+
+.discord-status{
+  font-size:12px;
+  color:#f0abfc;
+  margin-top:5px;
+}
+
+/* 🌸 PHOTOS */
+.photos{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  padding:40px;
+  z-index:2;
+  position:relative;
+}
+
+.photos img{
+  width:280px;
+  border-radius:18px;
+  box-shadow:0 0 30px #a855f733;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="galaxy"></canvas>
+
+<div class="hero">
+  <h1>cucee</h1>
+</div>
+
+<!-- 🐱 GIF / MP4 FIX -->
+<div class="cats">
+
+  <div class="cat">
+    <img class="cat-media" src="https://media.discordapp.net/attachments/1427296816193343613/1427297969408835734/G27H_mNXsAA6dQb.gif">
+  </div>
+
+  <div class="cat">
+    <video class="cat-media" autoplay loop muted playsinline>
+      <source src="https://media.tenor.com/RN2uP2yDwd0AAAPo/kedi-kitty.mp4">
+    </video>
+  </div>
+
+  <div class="cat">
+    <video class="cat-media" autoplay loop muted playsinline>
+      <source src="https://media.tenor.com/yDZryWCEP-cAAAPo/meow-cat.mp4">
+    </video>
+  </div>
+
+</div>
+
+<!-- 💜 DISCORD -->
+<section class="discord-section">
+  <h2>Discord</h2>
+
+  <div class="discord-cards">
+
+    <div class="discord-card">
+      <img id="av1" class="discord-avatar">
+      <div class="discord-name" id="nm1">loading...</div>
+      <div class="discord-status" id="st1"></div>
+      <div>969230413593714718</div>
+    </div>
+
+    <div class="discord-card">
+      <img id="av2" class="discord-avatar">
+      <div class="discord-name" id="nm2">loading...</div>
+      <div class="discord-status" id="st2"></div>
+      <div>959756088859828235</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 📸 PHOTOS -->
+<div class="photos">
+  <img src="https://media.discordapp.net/attachments/1495833415201722392/1498372094012952738/manita1.png">
+  <img src="https://media.discordapp.net/attachments/1495833415201722392/1498372095032430745/manita2.png">
+</div>
+
+<script>
+
+/* 🌌 GALAXY */
+const c=document.getElementById("galaxy");
+const x=c.getContext("2d");
+
+function resize(){
+  c.width=innerWidth;
+  c.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+let stars=[];
+for(let i=0;i<250;i++){
+  stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5});
+}
+
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  x.fillStyle="white";
+
+  stars.forEach(s=>{
+    x.beginPath();
+    x.arc(s.x,s.y,s.r,0,Math.PI*2);
+    x.fill();
+
+    s.y+=0.3;
+    if(s.y>c.height){s.y=0;s.x=Math.random()*c.width;}
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* 💜 CLICK HEART */
+document.addEventListener("click",(e)=>{
+  for(let i=0;i<10;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💜";
+
+    h.style.left=e.clientX+"px";
+    h.style.top=e.clientY+"px";
+
+    h.style.setProperty("--x",(Math.random()*200-100)+"px");
+    h.style.setProperty("--y",(Math.random()*200-100)+"px");
+
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1000);
+  }
+});
+
+/* 💎 DISCORD LIVE */
+async function load(id,av,nm,st){
+  try{
+    const r=await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+    const d=await r.json();
+    const u=d.data.discord_user;
+    const s=d.data.discord_status;
+
+    av.src=`https://cdn.discordapp.com/avatars/${id}/${u.avatar}.png`;
+    nm.textContent=u.global_name||u.username;
+    st.textContent="status: "+s;
+  }catch(e){
+    nm.textContent="offline";
+  }
+}
+
+load("969230413593714718",
+document.getElementById("av1"),
+document.getElementById("nm1"),
+document.getElementById("st1"));
+
+load("959756088859828235",
+document.getElementById("av2"),
+document.getElementById("nm2"),
+document.getElementById("st2"));
+
+</script>
+
+</body>
+</html>

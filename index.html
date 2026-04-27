@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>cucee</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>irem 💜</title>
 
 <style>
 body{
   margin:0;
   background:#0d001a;
   color:white;
-  font-family:Raleway;
+  font-family:Arial;
   overflow-x:hidden;
 }
 
-/* 🌌 GALAXY */
+/* 🌌 GALAXY BACKGROUND */
 canvas{
   position:fixed;
   inset:0;
@@ -35,26 +33,17 @@ canvas{
 }
 
 .hero h1{
-  font-size:6rem;
-  font-family:"Dancing Script";
-  background:linear-gradient(90deg,#f0abfc,#a855f7,#d8b4fe);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:glow 3s infinite;
+  font-size:5rem;
+  color:#f0abfc;
 }
 
-@keyframes glow{
-  0%,100%{filter:brightness(1);}
-  50%{filter:brightness(1.5);}
-}
-
-/* 💜 HEARTS */
+/* 💜 HEART ANIMATION */
 .heart{
   position:fixed;
-  font-size:22px;
+  font-size:20px;
   pointer-events:none;
   animation:pop 1s ease-out forwards;
-  z-index:9999;
+  z-index:999;
 }
 
 @keyframes pop{
@@ -68,148 +57,117 @@ canvas{
   z-index:2;
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
   gap:20px;
-  padding:40px;
+  flex-wrap:wrap;
+  padding:30px;
 }
 
-.cat{
-  width:220px;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 0 25px #a855f755;
+.cats img,
+.cats video{
+  width:250px;
+  border-radius:18px;
 }
 
-.cat-media{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
+/* 🎧 SPOTIFY */
+.spotify{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:center;
+  margin:40px 0;
+}
+
+iframe{
+  width:90%;
+  max-width:600px;
+  height:152px;
+  border-radius:16px;
+  border:none;
 }
 
 /* 💎 DISCORD */
-.discord-section{
+.discord{
   position:relative;
   z-index:2;
-  padding:60px 20px;
-  text-align:center;
-}
-
-.discord-cards{
   display:flex;
   justify-content:center;
   gap:30px;
   flex-wrap:wrap;
+  padding:40px;
 }
 
-.discord-card{
+.box{
   width:260px;
   background:#1a0030;
-  border:1px solid #a855f755;
-  border-radius:20px;
   padding:20px;
+  border-radius:18px;
+  text-align:center;
 }
 
-.discord-avatar{
+.box img{
   width:100px;
   height:100px;
   border-radius:50%;
-  object-fit:cover;
-}
-
-.discord-name{
-  margin-top:10px;
-  font-weight:700;
-  color:#d8b4fe;
-}
-
-.discord-status{
-  font-size:12px;
-  color:#f0abfc;
-  margin-top:5px;
-}
-
-/* 🌸 PHOTOS */
-.photos{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  padding:40px;
-  z-index:2;
-  position:relative;
-}
-
-.photos img{
-  width:280px;
-  border-radius:18px;
-  box-shadow:0 0 30px #a855f733;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="galaxy"></canvas>
+<canvas id="bg"></canvas>
 
 <div class="hero">
-  <h1>cucee</h1>
+  <h1>irem 💜</h1>
 </div>
 
-<!-- 🐱 GIF / MP4 FIX -->
+<!-- 🎧 SPOTIFY -->
+<div class="spotify">
+<iframe
+src="https://open.spotify.com/embed/playlist/1EkbiC9gHVqL9lwvHs1z2K?utm_source=generator&theme=0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+</div>
+
+<!-- 🐱 GIF / MP4 -->
 <div class="cats">
 
-  <div class="cat">
-    <img class="cat-media" src="https://media.discordapp.net/attachments/1427296816193343613/1427297969408835734/G27H_mNXsAA6dQb.gif">
-  </div>
+<img src="https://media.tenor.com/Iy_oqBMrFGEAAAAC/cat-kitten.gif">
 
-  <div class="cat">
-    <video class="cat-media" autoplay loop muted playsinline>
-      <source src="https://media.tenor.com/RN2uP2yDwd0AAAPo/kedi-kitty.mp4">
-    </video>
-  </div>
+<img src="https://media.tenor.com/2Gg_JCNqFvAAAAAC/cute-cat-cat.gif">
 
-  <div class="cat">
-    <video class="cat-media" autoplay loop muted playsinline>
-      <source src="https://media.tenor.com/yDZryWCEP-cAAAPo/meow-cat.mp4">
-    </video>
-  </div>
+<video autoplay loop muted playsinline>
+  <source src="https://media.tenor.com/RN2uP2yDwd0AAAPo/kedi-kitty.mp4">
+</video>
 
 </div>
 
-<!-- 💜 DISCORD -->
-<section class="discord-section">
-  <h2>Discord</h2>
-
-  <div class="discord-cards">
-
-    <div class="discord-card">
-      <img id="av1" class="discord-avatar">
-      <div class="discord-name" id="nm1">loading...</div>
-      <div class="discord-status" id="st1"></div>
-      <div>969230413593714718</div>
-    </div>
-
-    <div class="discord-card">
-      <img id="av2" class="discord-avatar">
-      <div class="discord-name" id="nm2">loading...</div>
-      <div class="discord-status" id="st2"></div>
-      <div>959756088859828235</div>
-    </div>
-
-  </div>
-</section>
-
 <!-- 📸 PHOTOS -->
-<div class="photos">
-  <img src="https://media.discordapp.net/attachments/1495833415201722392/1498372094012952738/manita1.png">
-  <img src="https://media.discordapp.net/attachments/1495833415201722392/1498372095032430745/manita2.png">
+<div class="cats">
+<img src="https://media.discordapp.net/attachments/1495833415201722392/1498372094012952738/manita1.png">
+<img src="https://media.discordapp.net/attachments/1495833415201722392/1498372095032430745/manita2.png">
+</div>
+
+<!-- 💎 DISCORD -->
+<div class="discord">
+
+<div class="box">
+<img id="a1">
+<div id="n1">loading...</div>
+<div>969230413593714718</div>
+</div>
+
+<div class="box">
+<img id="a2">
+<div id="n2">loading...</div>
+<div>959756088859828235</div>
+</div>
+
 </div>
 
 <script>
 
-/* 🌌 GALAXY */
-const c=document.getElementById("galaxy");
+/* 🌌 STAR GALAXY */
+const c=document.getElementById("bg");
 const x=c.getContext("2d");
 
 function resize(){
@@ -221,11 +179,17 @@ addEventListener("resize",resize);
 
 let stars=[];
 for(let i=0;i<250;i++){
-  stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5});
+  stars.push({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    r:Math.random()*1.5
+  });
 }
 
 function draw(){
-  x.clearRect(0,0,c.width,c.height);
+  x.fillStyle="#0d001a";
+  x.fillRect(0,0,c.width,c.height);
+
   x.fillStyle="white";
 
   stars.forEach(s=>{
@@ -234,56 +198,57 @@ function draw(){
     x.fill();
 
     s.y+=0.3;
-    if(s.y>c.height){s.y=0;s.x=Math.random()*c.width;}
+    if(s.y>c.height){
+      s.y=0;
+      s.x=Math.random()*c.width;
+    }
   });
 
   requestAnimationFrame(draw);
 }
 draw();
 
-/* 💜 CLICK HEART */
+/* 💜 CLICK HEARTS */
 document.addEventListener("click",(e)=>{
-  for(let i=0;i<10;i++){
-    const h=document.createElement("div");
+  for(let i=0;i<8;i++){
+    let h=document.createElement("div");
     h.className="heart";
     h.innerHTML="💜";
-
     h.style.left=e.clientX+"px";
     h.style.top=e.clientY+"px";
-
     h.style.setProperty("--x",(Math.random()*200-100)+"px");
     h.style.setProperty("--y",(Math.random()*200-100)+"px");
-
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),1000);
   }
 });
 
-/* 💎 DISCORD LIVE */
-async function load(id,av,nm,st){
+/* 💎 DISCORD FIX */
+async function load(id,img,name){
   try{
-    const r=await fetch(`https://api.lanyard.rest/v1/users/${id}`);
+    const r=await fetch("https://api.lanyard.rest/v1/users/"+id);
     const d=await r.json();
     const u=d.data.discord_user;
-    const s=d.data.discord_status;
 
-    av.src=`https://cdn.discordapp.com/avatars/${id}/${u.avatar}.png`;
-    nm.textContent=u.global_name||u.username;
-    st.textContent="status: "+s;
-  }catch(e){
-    nm.textContent="offline";
+    img.src = u.avatar
+      ? `https://cdn.discordapp.com/avatars/${id}/${u.avatar}.png`
+      : "https://cdn.discordapp.com/embed/avatars/0.png";
+
+    name.textContent=u.global_name||u.username;
+
+  }catch{
+    img.src="https://cdn.discordapp.com/embed/avatars/0.png";
+    name.textContent="offline";
   }
 }
 
 load("969230413593714718",
-document.getElementById("av1"),
-document.getElementById("nm1"),
-document.getElementById("st1"));
+document.getElementById("a1"),
+document.getElementById("n1"));
 
 load("959756088859828235",
-document.getElementById("av2"),
-document.getElementById("nm2"),
-document.getElementById("st2"));
+document.getElementById("a2"),
+document.getElementById("n2"));
 
 </script>
 
